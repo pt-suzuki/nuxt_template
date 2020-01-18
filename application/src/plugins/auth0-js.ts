@@ -1,24 +1,25 @@
-import Auth0Lock from 'auth0-lock'
+import Auth0Js from 'auth0-js'
 import nuxtConfig from '../../nuxt.config'
 import queryString from 'query-string'
 import {ParsedQuery} from 'query-string'
 import jwtDecode from 'jwt-decode'
 const config = nuxtConfig.auth0
 
-class Auth0Process {
-  showLock(container:any) {
-    const lock = new Auth0Lock(config.clientID, config.domain, {
-      container,
-      closable: false,
-      auth: {
-        responseType: 'token id_token',
-        redirectUrl: this.getBaseUrl() + '/callback',
-        params: {
-          scope: 'openid profile email'
-        }
-      }
+class Auth0UseCase {
+
+  private auth0 = new Auth0Js.WebAuth({
+    clientID: 'CLIENT_ID',
+    domain: 'DOMAIN'
+  });
+
+  showLock(email:string,password:string) {
+    this.auth0.client.login({
+      realm: 'Username-Password-Authentication',
+      username: email,
+      password: password,
+      scope: 'openid email'
+    },(err, result)=>{
     })
-    lock.show()
   }
 
   getBaseUrl() {
@@ -61,5 +62,5 @@ class Auth0Process {
 }
 
 export default (_:any, inject:any) => {
-  inject('auth0', new Auth0Process())
+  inject('auth0', new Auth0UseCase())
 }
