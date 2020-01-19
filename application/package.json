@@ -32,7 +32,7 @@
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
     "@types/auth0-lock": "^11.4.12",
     "@types/jwt-decode": "^2.2.1",
-    "auth0-lock": "^11.20.2",
+    "auth-js": "0.0.16",
     "axios": "^0.19.1",
     "cross-env": "^6.0.3",
     "dotenv": "^8.2.0",

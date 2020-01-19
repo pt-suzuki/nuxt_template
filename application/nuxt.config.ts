@@ -32,7 +32,7 @@ export default  {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    {src: '~plugins/auth0-lock.ts', ssr: false },
+    {src: '~plugins/auth0-js.ts', ssr: false },
   ],
   auth0: {
     domain: 'dev-v587ce-s.auth0.com',
