@@ -11,6 +11,7 @@ import { PageUri } from '../enums/PageUri'
 export default class LoginPresentor extends AbstractPresenter {
   created() {
     this.$auth0.setTokenByQuery()
+    this.$auth0.approvalFireBaseByCustomToken()
     this.redirectEdit()
   }
 
