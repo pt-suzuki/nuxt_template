@@ -1,0 +1,17 @@
+node_modules/*
+
+src/assets/*
+
+.env.*
+
+src/dist/
+
+src/static/*
+
+src/bin/*
+
+nuxt.config.ts
+
+src/types/*
+
+jest.config.js

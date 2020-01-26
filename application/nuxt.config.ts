@@ -1,3 +1,5 @@
+import { Context, Configuration } from "@nuxt/types";
+
 const envPath = `../.env.${process.env.NODE_ENV || 'local'}`
 
 const {API_URL,SECRET_ID,SECRET_KEY} = process.env;
@@ -60,7 +62,33 @@ export default  {
     /*
      ** You can extend webpack config here
      */
-    extend(config:any, ctx:any) {
+    extend(config : Configuration, ctx : Context) {
+      if (ctx.isDev && ctx.isClient) {
+        config.devtool = 'inline-cheap-module-source-map';
+        // Run ESLint on save
+        if (config.module) {
+          config.module.rules.push({
+            enforce: 'pre',
+            test: /\.(ts|js|vue)$/,
+            loader: 'eslint-loader',
+            exclude: /(node_modules)/
+          });
+        }
+
+        // Run StyleLint on save
+        /* eslint import/no-extraneous-dependencies: 0 */
+        /* eslint global-require: 0 */
+        if (config.plugins) {
+          const StylelintPlugin = require('stylelint-webpack-plugin');
+          config.plugins.push(new StylelintPlugin({
+            files: [
+              '**/*.vue',
+              '**/*.css',
+              '**/*.scss',
+            ],
+          }));
+        }
+      }
     }
   },
   srcDir:"src/",
