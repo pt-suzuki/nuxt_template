@@ -1,47 +1,25 @@
 {
-  "name": "nuxt-template",
+  "name": "frec-front",
   "version": "1.0.0",
-  "description": "My Nuxt Template Project",
+  "description": "My first-rate Nuxt.js project",
   "author": "pt-suzuki",
   "private": true,
   "scripts": {
     "dev": "cross-env NUXT_HOST=0.0.0.0 NODE_ENV=development nuxt-ts",
     "build": "nuxt-ts build",
-    "dev-build": "cross-env NODE_ENV=development nuxt-ts build",
+    "dev-build": "cross-env NODE_ENV=dev nuxt-ts build",
     "prod-build": "cross-env NODE_ENV=production nuxt-ts build",
     "dev-deploy": "npm run dev-build && sls deploy --stage dev",
     "staging-deploy": "npm run build && sls deploy --stage staging",
-    "start": "cross-env NODE_ENV=production nuxt-ts start",
+    "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt-ts generate",
+    "lint": "eslint --ext .js,.ts,.vue ./src && stylelint ./src/**/*.vue ./src/**/*.css /src/**/*.scss",
+    "lint:fix": "eslint --ext .js,.ts,.vue ./src --fix && stylelint ./src/**/*.vue /src/**/*.css /src/**/*.scss --fix",
+    "lint:ts": "eslint --ext .js,.ts,.vue ./src",
+    "lint:css": "stylelint ./src/**/*.vue ./src/**/*.css ./src/**/*.scss",
+    "lint:ts:fix": "eslint --ext .js,.ts,.vue ./src --fix",
+    "lint:css:fix": "stylelint ./src --fix",
     "test": "jest"
-  },
-  "lint-staged": {
-    "*.{js,vue}": "eslint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "dependencies": {
-    "@nuxt/types": "^0.6.1",
-    "@nuxt/typescript-build": "^0.5.6",
-    "@nuxt/typescript-runtime": "^0.3.7",
-    "@nuxtjs/auth": "^4.8.5",
-    "@nuxtjs/axios": "^5.9.3",
-    "@nuxtjs/eslint-config-typescript": "^1.0.0",
-    "@types/auth0-lock": "^11.4.12",
-    "@types/jwt-decode": "^2.2.1",
-    "auth-js": "0.0.16",
-    "axios": "^0.19.1",
-    "cross-env": "^6.0.3",
-    "dotenv": "^8.2.0",
-    "jwt-decode": "^2.2.0",
-    "moment": "^2.24.0",
-    "nuxt": "^2.0.0",
-    "nuxt-property-decorator": "^2.5.0",
-    "query-string": "^6.9.0",
-    "vue-property-decorator": "^8.3.0"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
@@ -51,6 +29,7 @@
     "@nuxtjs/bootstrap-vue": "^2.0.4",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
+    "@nuxtjs/eslint-module": "^1.1.0",
     "@nuxtjs/font-awesome": "^1.0.4",
     "@nuxtjs/toast": "^3.3.0",
     "aws-lambda": "^0.1.2",
@@ -70,7 +49,8 @@
     "serverless-nuxt": "^1.0.0-alpha.1",
     "uiv": "^0.34.2",
     "v-select2-component": "^0.4.1",
-    "vue": "^2.6.11",
+    "vue": "2.6.10",
+    "vue-class-component": "^7.2.2",
     "vue-client-only": "^2.0.0",
     "vue-property-decorator": "^8.3.0",
     "vuedraggable": "^2.23.2",

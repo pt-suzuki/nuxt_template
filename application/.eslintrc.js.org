@@ -6,12 +6,14 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
-    'prettier'
+    'prettier',
+    'vue',
   ],
   parserOptions: {
     parser: '@typescript-eslint/parser'
   },
   extends: [
+    '@nuxtjs',
     '@nuxtjs/eslint-config-typescript',
     'plugin:nuxt/recommended',
     'airbnb-base',
@@ -46,7 +48,7 @@ module.exports = {
     'no-alert': 'off',
     'no-console': 'off',
     'no-shadow': ['error', {
-      'allow': ['state','enum'],
+      'allow': ['state'],
     }],
     'no-param-reassign': ['error', {
       'props': false,
@@ -58,6 +60,12 @@ module.exports = {
     'max-len': ['error', { 'code': 120 }],
     'lines-between-class-members': 'off',
     'camelcase': ['off'],
+    'no-shadow': ["error", {
+      "allow": [ "LIST", "CONTENT", "EDIT" ]
+    }],
+    'no-underscore-dangle': ["error", {
+      "allowAfterThis": true,
+    }],
   },
   globals: {
     'FB': 'readonly',
@@ -68,8 +76,10 @@ module.exports = {
         'extensions': ['.js', '.jsx', '.json', '.ts', '.tsx']
       },
       'alias': [
-        ['~', __dirname], // ルートディレクトリのエイリアス
+        ['~', __dirname + '/src'], // ルートディレクトリのエイリアス
+        ['@', __dirname + '/src'], // ルートディレクトリのエイリアス
       ],
-    }
+    },
+    "import/extensions": [".js",".jsx",".ts",".tsx"],
   }
 }
